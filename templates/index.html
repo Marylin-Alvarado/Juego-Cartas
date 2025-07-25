@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎴 Oráculo del Solitario - Juego de Cartas Místico</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style_pantallas.css') }}">
+</head>
+<body class="tema-azul">
+    <div class="container">
+        <!-- PANTALLA 1: INICIO -->
+        <div id="pantalla-inicio" class="pantalla activa">
+            <div class="logo-container">
+                <h1 class="titulo-principal">🎴 SOLITAIRE</h1>
+                <h2 class="subtitulo-principal">COLLECTION</h2>
+                <div class="cartas-flotantes">
+                    <div class="carta-flotante carta-as">A♥</div>
+                    <div class="carta-flotante carta-pequena">2♠</div>
+                    <div class="carta-flotante carta-diamante">♦</div>
+                </div>
+            </div>
+            
+            <div class="controles-inicio">
+                <button id="btn-comenzar" class="btn-principal">✨ COMENZAR</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA 2: SELECCIÓN DE MODO -->
+        <div id="pantalla-modo" class="pantalla">
+            <div class="header-modo">
+                <h1 class="titulo-pantalla">🎮 MODO DE JUEGO</h1>
+                <p class="descripcion-pantalla">Elige cómo quieres jugar al solitario</p>
+            </div>
+            
+            <div class="opciones-modo">
+                <div class="opcion-modo" id="opcion-automatico">
+                    <div class="icono-modo">🤖</div>
+                    <h3>AUTOMÁTICO</h3>
+                    <p>El oráculo revela las cartas automáticamente según el destino</p>
+                    <button id="btn-modo-automatico" class="btn-modo-seleccion">SELECCIONAR</button>
+                </div>
+                
+                <div class="opcion-modo" id="opcion-manual">
+                    <div class="icono-modo">🎮</div>
+                    <h3>MANUAL</h3>
+                    <p>Tú tienes el control - mueve las cartas y descubre tu destino</p>
+                    <button id="btn-modo-manual" class="btn-modo-seleccion">SELECCIONAR</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- PANTALLA 3: PREGUNTA AL ORÁCULO -->
+        <div id="pantalla-pregunta" class="pantalla">
+            <div class="header-pregunta">
+                <h1 class="titulo-pantalla">🔮 PREGUNTA AL ORÁCULO</h1>
+                <p class="descripcion-pantalla">Haz tu pregunta y el destino te responderá</p>
+            </div>
+            
+            <div class="formulario-pregunta">
+                <div class="input-container">
+                    <textarea id="input-pregunta" placeholder="Escribe tu pregunta aquí... ¿Tendré suerte hoy?" maxlength="200"></textarea>
+                    <div class="contador-caracteres">0/200</div>
+                </div>
+                
+                <div class="ejemplos-pregunta">
+                    <h4>Ejemplos de preguntas:</h4>
+                    <div class="ejemplos-lista">
+                        <span class="ejemplo" data-texto="¿Conseguiré el trabajo que quiero?">💼 ¿Conseguiré el trabajo?</span>
+                        <span class="ejemplo" data-texto="¿Tendré suerte en el amor?">💕 ¿Tendré suerte en el amor?</span>
+                        <span class="ejemplo" data-texto="¿Es buen momento para tomar esa decisión?">🤔 ¿Es buen momento?</span>
+                    </div>
+                </div>
+                
+                <button id="btn-iniciar-juego" class="btn-principal">🎯 INICIAR JUEGO</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA 4: JUEGO PRINCIPAL -->
+        <div id="pantalla-juego" class="pantalla">
+            <!-- Header del juego -->
+            <div class="game-header">
+                <div class="game-info">
+                    <div class="cronometro" id="cronometro">00:00:00</div>
+                    <div class="puntuacion" id="puntuacion">000</div>
+                </div>
+                <div class="pregunta-actual">
+                    <span id="pregunta-mostrada">Tu pregunta aparecerá aquí</span>
+                    <div id="modo-indicador" class="modo-indicador"></div>
+                </div>
+            </div>
+
+            <!-- Controles del juego -->
+            <div class="controles-juego">
+                <button id="btnBarajar" class="btn btn-barajar">🔄 Barajar Cartas</button>
+                <button id="btnRepartir" class="btn btn-repartir" disabled>🎴 Repartir Cartas</button>
+                <button id="btnNuevoJuego" class="btn btn-nuevo">🎯 Nuevo Juego</button>
+                <button id="btnVolverInicio" class="btn btn-volver">🏠 Volver al Inicio</button>
+            </div>
+
+            <!-- Área de mensajes -->
+            <div id="mensajes" class="mensajes">
+                <p>🔮 El oráculo está preparando las cartas para responder tu pregunta...</p>
+            </div>
+
+            <!-- Área de barajado -->
+            <div id="barajado-area" class="barajado-area" style="display: none;">
+                <div class="barajado-animation">
+                    <div class="deck deck-left">
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                    </div>
+                    <div class="deck deck-right">
+                        <div class="card"></div>
+                        <div class="card"></div>
+                        <div class="card"></div>
+                    </div>
+                </div>
+                <p class="barajado-text">🔄 Barajando cartas...</p>
+            </div>
+
+            <!-- Área de juego -->
+            <div id="area-juego" class="area-juego">
+                <!-- Las cartas aparecerán aquí al repartir -->
+            </div>
+
+            <!-- Información del juego -->
+            <div class="info-juego">
+                <div class="info-item">
+                    <span class="info-label">Próximo montón:</span>
+                    <span id="montonActual" class="info-value">AS</span>
+                </div>
+                <div class="info-item">
+                    <span class="info-label">Última carta:</span>
+                    <span id="ultimaCarta" class="info-value">-</span>
+                </div>
+            </div>
+
+            <!-- Área de resultado -->
+            <div id="resultado" class="resultado" style="display: none;">
+                <div class="resultado-content">
+                    <div class="resultado-icon">🔮</div>
+                    <h2 class="resultado-titulo">El Oráculo Responde</h2>
+                    <p class="resultado-mensaje"></p>
+                    <div class="resultado-interpretacion"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Efectos visuales -->
+        <div class="particles"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script_pantallas.js') }}"></script>
+    <!-- Solo se carga script_pantallas.js para evitar conflictos de lógica -->
+</body>
+</html>
