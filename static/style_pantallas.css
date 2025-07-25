@@ -1,0 +1,686 @@
+/* ===== SISTEMA DE PANTALLAS ===== */
+
+/* Pantallas base */
+.pantalla {
+    display: none;
+    min-height: 100vh;
+    width: 100%;
+    position: relative;
+    padding: 20px;
+}
+
+.pantalla.activa {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== TEMA AZUL FIJO ===== */
+body {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%);
+    min-height: 100vh;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* ===== PANTALLA 1: INICIO ===== */
+.logo-container {
+    text-align: center;
+    margin-bottom: 60px;
+    animation: fadeInDown 1s ease-out;
+}
+
+.titulo-principal {
+    font-family: 'Cinzel', serif;
+    font-size: 4rem;
+    font-weight: 700;
+    color: #ffd700;
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+    margin: 0 0 10px 0;
+    letter-spacing: 3px;
+}
+
+.subtitulo-principal {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem;
+    font-weight: 400;
+    color: #fff;
+    margin: 0;
+    opacity: 0.9;
+    letter-spacing: 2px;
+}
+
+.cartas-flotantes {
+    position: relative;
+    height: 150px;
+    margin-top: 30px;
+}
+
+.carta-flotante {
+    position: absolute;
+    width: 60px;
+    height: 80px;
+    background: #fff;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+    animation: floatCards 3s ease-in-out infinite;
+}
+
+.carta-as {
+    left: 20%;
+    color: #e74c3c;
+    animation-delay: 0s;
+}
+
+.carta-pequena {
+    right: 20%;
+    top: 20px;
+    color: #2c3e50;
+    animation-delay: 1s;
+}
+
+.carta-diamante {
+    left: 50%;
+    top: 40px;
+    transform: translateX(-50%);
+    color: #e74c3c;
+    font-size: 2rem;
+    animation-delay: 2s;
+}
+
+@keyframes floatCards {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.controles-inicio {
+    text-align: center;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.btn-principal {
+    padding: 18px 40px;
+    background: linear-gradient(135deg, #ffd700, #ffed4a);
+    color: #333;
+    border: none;
+    border-radius: 30px;
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 16px rgba(255,215,0,0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-principal:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 24px rgba(255,215,0,0.4);
+}
+
+/* ===== PANTALLA 2: MODO DE JUEGO ===== */
+.header-modo, .header-pregunta {
+    text-align: center;
+    margin-bottom: 50px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.titulo-pantalla {
+    font-family: 'Cinzel', serif;
+    font-size: 2.5rem;
+    color: #ffd700;
+    margin: 0 0 15px 0;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.descripcion-pantalla {
+    color: #fff;
+    font-size: 1.1rem;
+    opacity: 0.9;
+    margin: 0;
+}
+
+.opciones-modo {
+    display: flex;
+    gap: 40px;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.opcion-modo {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid rgba(255,255,255,0.2);
+    border-radius: 15px;
+    padding: 40px 30px;
+    text-align: center;
+    min-width: 250px;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+
+.opcion-modo:hover {
+    transform: translateY(-5px);
+    border-color: #ffd700;
+    box-shadow: 0 15px 30px rgba(255,215,0,0.2);
+}
+
+.icono-modo {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.opcion-modo h3 {
+    color: #fff;
+    font-size: 1.5rem;
+    margin: 0 0 15px 0;
+    font-family: 'Cinzel', serif;
+}
+
+.opcion-modo p {
+    color: rgba(255,255,255,0.8);
+    margin: 0 0 25px 0;
+    line-height: 1.5;
+}
+
+.btn-modo-seleccion {
+    padding: 12px 24px;
+    background: transparent;
+    border: 2px solid #ffd700;
+    color: #ffd700;
+    border-radius: 25px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-modo-seleccion:hover {
+    background: #ffd700;
+    color: #333;
+}
+
+/* ===== PANTALLA 3: PREGUNTA ===== */
+.formulario-pregunta {
+    max-width: 600px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease-out 0.3s both;
+}
+
+.input-container {
+    position: relative;
+    margin-bottom: 30px;
+}
+
+#input-pregunta {
+    width: 100%;
+    height: 120px;
+    padding: 20px;
+    border: 2px solid rgba(255,255,255,0.3);
+    border-radius: 15px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-size: 1.1rem;
+    resize: none;
+    backdrop-filter: blur(10px);
+    font-family: 'Poppins', sans-serif;
+}
+
+#input-pregunta::placeholder {
+    color: rgba(255,255,255,0.6);
+}
+
+#input-pregunta:focus {
+    outline: none;
+    border-color: #ffd700;
+    box-shadow: 0 0 20px rgba(255,215,0,0.3);
+}
+
+.contador-caracteres {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    color: rgba(255,255,255,0.6);
+    font-size: 0.9rem;
+}
+
+.ejemplos-pregunta {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.ejemplos-pregunta h4 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.ejemplos-lista {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+}
+
+.ejemplo {
+    padding: 8px 16px;
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 20px;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ejemplo:hover {
+    background: rgba(255,215,0,0.2);
+    border-color: #ffd700;
+}
+
+/* ===== PANTALLA 4: JUEGO ===== */
+#pantalla-juego {
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.game-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(135deg, #8B4513, #A0522D);
+    padding: 15px 25px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: 2px solid #654321;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+}
+
+.game-info {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+
+.cronometro, .puntuacion {
+    color: #fff;
+    font-size: 1.3rem;
+    font-weight: 700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    padding: 8px 16px;
+    background: rgba(0,0,0,0.3);
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+.cronometro::before {
+    content: '⏱️ ';
+}
+
+.puntuacion::before {
+    content: '🏆 Score: ';
+}
+
+.pregunta-actual {
+    max-width: 400px;
+    text-align: center;
+    background: rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    border-radius: 20px;
+    border: 1px solid rgba(255,255,255,0.2);
+}
+
+#pregunta-mostrada {
+    color: #ffd700;
+    font-style: italic;
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.modo-indicador {
+    font-size: 0.9rem;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 15px;
+    border: 1px solid rgba(255,255,255,0.3);
+}
+
+.modo-indicador.automatico {
+    background: rgba(34, 139, 34, 0.3);
+    color: #90EE90;
+}
+
+.modo-indicador.manual {
+    background: rgba(255, 140, 0, 0.3);
+    color: #FFB347;
+}
+
+.controles-juego {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-barajar {
+    background: linear-gradient(135deg, #3498db, #2980b9);
+    color: #fff;
+}
+
+.btn-repartir {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: #fff;
+}
+
+.btn-nuevo {
+    background: linear-gradient(135deg, #27ae60, #229954);
+    color: #fff;
+}
+
+.btn-volver {
+    background: linear-gradient(135deg, #f39c12, #e67e22);
+    color: #fff;
+}
+
+.btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/* Área de juego con layout cuadrado */
+#area-juego {
+    position: relative;
+    height: 500px;
+    max-width: 800px;
+    margin: 0 auto;
+    background: linear-gradient(135deg, #2d5a2d 0%, #1e4a1e 50%, #2d5a2d 100%);
+    border-radius: 15px;
+    border: 3px solid #8B4513;
+    box-shadow: 
+        inset 0 0 20px rgba(0,0,0,0.3),
+        0 8px 16px rgba(0,0,0,0.4);
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(255,255,255,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(255,255,255,0.05) 0%, transparent 50%);
+}
+
+/* Mensaje cuando no hay cartas */
+#area-juego:empty::after {
+    content: '🎴 Usa los botones para barajar y repartir las cartas';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgba(255,255,255,0.7);
+    font-size: 1.2rem;
+    text-align: center;
+    font-weight: 600;
+}
+
+.carta {
+    position: absolute;
+    width: 70px;
+    height: 95px;
+    background: linear-gradient(145deg, #ffffff, #f8f8f8);
+    border: 2px solid #333;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 
+        0 4px 8px rgba(0,0,0,0.3),
+        inset 0 1px 3px rgba(255,255,255,0.5);
+    padding: 8px 4px;
+}
+
+.carta:hover {
+    transform: translateY(-8px) scale(1.1);
+    box-shadow: 
+        0 12px 24px rgba(0,0,0,0.4),
+        inset 0 1px 3px rgba(255,255,255,0.5);
+    z-index: 10;
+}
+
+.carta.seleccionada {
+    border: 3px solid #FFD700;
+    background: linear-gradient(145deg, #FFFACD, #F0E68C);
+    box-shadow: 
+        0 0 20px rgba(255,215,0,0.8),
+        0 12px 24px rgba(0,0,0,0.4),
+        inset 0 1px 3px rgba(255,255,255,0.7);
+    transform: translateY(-5px) scale(1.05);
+    z-index: 15;
+}
+
+.carta.seleccionada::after {
+    content: '✨';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    font-size: 1.2rem;
+    animation: sparkle 1s ease-in-out infinite alternate;
+}
+
+@keyframes sparkle {
+    0% { transform: scale(0.8) rotate(0deg); opacity: 0.7; }
+    100% { transform: scale(1.2) rotate(180deg); opacity: 1; }
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+    20% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    80% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0; transform: translate(-50%, -50%) scale(0.8); }
+}
+
+.carta.roja {
+    color: #dc2626;
+}
+
+.carta.negra {
+    color: #1f2937;
+}
+
+.carta .valor {
+    font-size: 1.1rem;
+    line-height: 1;
+    font-weight: 700;
+}
+
+.carta .palo {
+    font-size: 1.4rem;
+    margin-top: 2px;
+}
+
+/* Carta boca abajo */
+.carta-boca-abajo {
+    background: linear-gradient(145deg, #1a237e, #303f9f);
+    color: #fff;
+    cursor: default !important;
+}
+
+.carta-reverso {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.patron-reverso {
+    width: 40px;
+    height: 50px;
+    background: repeating-linear-gradient(
+        45deg,
+        #fff,
+        #fff 2px,
+        transparent 2px,
+        transparent 8px
+    ),
+    repeating-linear-gradient(
+        -45deg,
+        #fff,
+        #fff 2px,
+        transparent 2px,
+        transparent 8px
+    );
+    border-radius: 4px;
+    opacity: 0.8;
+}
+
+/* Carta seleccionada */
+.carta.seleccionada {
+    border: 3px solid #00ff88 !important;
+    box-shadow: 
+        0 0 15px rgba(0, 255, 136, 0.6),
+        0 8px 16px rgba(0,0,0,0.4) !important;
+    transform: translateY(-5px) scale(1.05);
+}
+
+.carta:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 16px rgba(0,0,0,0.4),
+        inset 0 1px 3px rgba(255,255,255,0.3);
+}
+
+.carta-boca-abajo:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 
+        0 8px 16px rgba(0,0,0,0.4),
+        inset 0 1px 3px rgba(255,255,255,0.3);
+}
+
+/* Montón seleccionado */
+.monton-seleccionado {
+    box-shadow: 
+        0 0 15px rgba(255,215,0,0.6),
+        0 8px 16px rgba(0,0,0,0.4) !important;
+    border-color: #FFD700 !important;
+}
+
+/* Etiquetas de montones */
+.etiqueta-monton {
+    background: rgba(0,0,0,0.7);
+    padding: 4px 8px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.3);
+    transition: all 0.3s ease;
+}
+
+/* Efecto de pila de cartas */
+.carta[data-posicion-en-monton="0"] {
+    box-shadow: 
+        0 2px 4px rgba(0,0,0,0.2),
+        inset 0 1px 3px rgba(255,255,255,0.5);
+}
+
+.carta[data-posicion-en-monton="1"] {
+    box-shadow: 
+        0 3px 6px rgba(0,0,0,0.25),
+        inset 0 1px 3px rgba(255,255,255,0.5);
+}
+
+.carta[data-posicion-en-monton="2"] {
+    box-shadow: 
+        0 4px 8px rgba(0,0,0,0.3),
+        inset 0 1px 3px rgba(255,255,255,0.5);
+}
+
+.carta[data-posicion-en-monton="3"] {
+    box-shadow: 
+        0 6px 12px rgba(0,0,0,0.4),
+        inset 0 1px 3px rgba(255,255,255,0.5);
+}
+
+/* Efecto de mesa de casino */
+#area-juego::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        repeating-linear-gradient(
+            45deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,0.03) 2px,
+            rgba(255,255,255,0.03) 4px
+        );
+    border-radius: 12px;
+    pointer-events: none;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== RESPONSIVO ===== */
+@media (max-width: 768px) {
+    .titulo-principal {
+        font-size: 2.5rem;
+    }
+    
+    .opciones-modo {
+        flex-direction: column;
+        gap: 20px;
+    }
+    
+    .game-header {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+    
+    .controles-juego {
+        flex-wrap: wrap;
+    }
+}
